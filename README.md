@@ -1,8 +1,8 @@
 # Groupmark
 
-Lo hice para mí. Lo comparto porque funciona.
+Groupmark te ayuda a organizar mejor tu navegador cada vez que lo abres.
 
-Los marcadores están bien, pero los grupos de pestañas son como organizas el navegador hoy. El problema es que los grupos se pierden al cerrar la ventana. Groupmark los conecta con tus marcadores para que no tengas que reabrir todo a mano cada mañana.
+Los grupos de pestañas se pierden al cerrar la ventana. Groupmark los conecta con tus marcadores para que no tengas que reabrir todo a mano cada mañana.
 
 Crea una carpeta de marcadores → ponle un nombre → un clic y se abre como grupo de pestañas con su color. Funciona entre dispositivos sin login ni cuenta.
 
