@@ -1,75 +1,51 @@
 # Groupmark
 
-Abre tus carpetas de marcadores como grupos de pestañas con color persistente, sincronizados entre dispositivos sin login ni backend.
+Lo hice para mí. Lo comparto porque funciona.
 
-**Compatible con:** Chrome · Brave · Edge · Vivaldi (Chromium ≥ 114)
+Los marcadores están bien, pero los grupos de pestañas son como organizas el navegador hoy. El problema es que los grupos se pierden al cerrar la ventana. Groupmark los conecta con tus marcadores para que no tengas que reabrir todo a mano cada mañana.
 
----
-
-## Qué hace
-
-- Lista tus carpetas top-level de la barra de marcadores en un popup.
-- Un clic → abre todas las URLs de la carpeta como un grupo de pestañas con título y color.
-- El color se guarda automáticamente y sincroniza entre tus dispositivos vía Brave Sync / Chrome Sync.
-- Sin cuenta, sin servidor, sin telemetría. Tus datos no salen del navegador.
-
----
-
-## Instalación
-
-### Opción A — Chrome Web Store
-
-*(próximamente)*
-
-### Opción B — Instalar desde el código fuente
-
-1. Descarga o clona el repositorio:
-
-   ```bash
-   git clone https://github.com/JesusMartinezCamps/groupmark.git
-   ```
-
-2. Abre `chrome://extensions` en tu navegador.
-
-3. Activa **"Modo de desarrollador"** (toggle arriba a la derecha).
-
-4. Haz clic en **"Cargar descomprimida"** y selecciona la carpeta `groupmark`.
-
-5. La extensión aparece en la barra. Haz clic en su icono para abrir el popup.
-
-> Cada vez que modifiques el código, ve a `chrome://extensions` y pulsa el botón de recargar (↻) en la tarjeta de Groupmark.
-
----
-
-## Uso
-
-1. Crea carpetas en tu barra de marcadores con las URLs que quieras agrupar.
-2. Abre el popup de Groupmark.
-3. Elige el color del grupo haciendo clic en los puntos de colores.
-4. Pulsa **Abrir** → se abren todas las URLs como un grupo de pestañas.
-
-El color queda guardado. La próxima vez que abras el grupo en otro dispositivo, tendrá el mismo color.
+Crea una carpeta de marcadores → ponle un nombre → un clic y se abre como grupo de pestañas con su color. Funciona entre dispositivos sin login ni cuenta.
 
 ---
 
 ## Cómo funciona
 
-- Las URLs viven en tus marcadores normales (sincronizados por el navegador).
-- El color del grupo se guarda en `chrome.storage.sync` con el nombre de la carpeta como clave.
-- No hay base de datos propia ni servidor. Todo es local + sync nativo del navegador.
+1. Crea una carpeta en tu barra de marcadores y mete las URLs que uses a diario (correo, GitHub, lo que sea).
+2. Abre Groupmark desde la barra del navegador.
+3. Elige el color del grupo con los puntos de colores.
+4. Haz clic en la carpeta → se abren todas las pestañas como un grupo, con el nombre y el color que elegiste.
+
+El color se guarda y sincroniza entre dispositivos vía Brave Sync / Chrome Sync. No hay backend. No hay cuenta. Tus datos no salen del navegador.
+
+---
+
+## Instalación
+
+### Chrome Web Store
+
+*(próximamente)*
+
+### Desde el código fuente
+
+```bash
+git clone https://github.com/JesusMartinezCamps/groupmark-browser-extension.git
+```
+
+1. Abre `chrome://extensions`
+2. Activa **"Modo de desarrollador"** (arriba a la derecha)
+3. **"Cargar descomprimida"** → selecciona la carpeta del repo
+4. Listo
+
+Compatible con Chrome, Brave, Edge y Vivaldi (Chromium ≥ 114).
 
 ---
 
 ## Contribuir
 
-Pull requests bienvenidos. Antes de abrir uno:
+El código es vanilla JS, sin build step ni dependencias. Si ves algo que mejorar, abre un PR.
 
-- La extensión usa JavaScript ES2022 vanilla, sin build step ni dependencias.
-- No introducir `fetch` a internet ni permisos adicionales sin discusión previa.
-- Los commits en español.
+Regla única: la extensión es offline. Sin fetch a internet, sin permisos extra.
 
 ---
 
-## Licencia
-
-MIT — ver [LICENSE](LICENSE).
+MIT · [JesusMartinezCamps](https://github.com/JesusMartinezCamps)

@@ -1,12 +1,15 @@
 const COLORS = ['grey', 'blue', 'red', 'yellow', 'green', 'pink', 'purple', 'cyan', 'orange'];
 
+const LAUNCH_ICON = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+  <path d="M2 10L10 2M10 2H5M10 2V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+
 async function getTopLevelFolders() {
   const tree = await chrome.bookmarks.getTree();
   const roots = tree[0].children ?? [];
   const folders = [];
   for (const root of roots) {
     for (const node of (root.children ?? [])) {
-      // Nodo sin URL = carpeta
       if (!node.url) {
         const children = await chrome.bookmarks.getChildren(node.id);
         const urlCount = children.filter(c => c.url).length;
@@ -42,38 +45,50 @@ function buildFolderRow(folder, savedColor) {
   const row = document.createElement('div');
   row.className = 'folder-row';
 
+  // Zona clicable izquierda: icono + nombre + contador
+  const trigger = document.createElement('button');
+  trigger.className = 'folder-trigger';
+  trigger.title = `Abrir "${folder.name}" como grupo de pestañas`;
+
+  const icon = document.createElement('span');
+  icon.className = 'launch-icon';
+  icon.innerHTML = LAUNCH_ICON;
+
   const name = document.createElement('span');
   name.className = 'folder-name';
   name.textContent = folder.name;
-  name.title = folder.name;
 
   const count = document.createElement('span');
   count.className = 'folder-count';
   count.textContent = `${folder.urlCount} tab${folder.urlCount !== 1 ? 's' : ''}`;
 
-  const colorPicker = buildColorPicker(folder.name, savedColor);
+  trigger.append(icon, name, count);
 
-  const btn = document.createElement('button');
-  btn.className = 'btn-open';
-  btn.textContent = 'Abrir';
-  btn.addEventListener('click', async () => {
-    btn.disabled = true;
-    btn.textContent = '…';
+  trigger.addEventListener('click', async () => {
+    trigger.disabled = true;
+    trigger.classList.add('loading');
     const result = await chrome.runtime.sendMessage({
       type: 'OPEN_FOLDER',
       folderId: folder.id,
       folderName: folder.name,
     });
     if (result?.error) {
-      btn.textContent = 'Error';
-      btn.title = result.error;
-      setTimeout(() => { btn.disabled = false; btn.textContent = 'Abrir'; }, 2000);
+      trigger.classList.remove('loading');
+      trigger.classList.add('error');
+      trigger.title = result.error;
+      setTimeout(() => {
+        trigger.disabled = false;
+        trigger.classList.remove('error');
+        trigger.title = `Abrir "${folder.name}" como grupo de pestañas`;
+      }, 2000);
     } else {
       window.close();
     }
   });
 
-  row.append(name, count, colorPicker, btn);
+  const colorPicker = buildColorPicker(folder.name, savedColor);
+
+  row.append(trigger, colorPicker);
   return row;
 }
 
@@ -100,7 +115,6 @@ async function render() {
     return;
   }
 
-  // Cargar todos los colores en paralelo antes de pintar
   const colors = await Promise.all(
     folders.map(f =>
       chrome.runtime.sendMessage({ type: 'GET_COLOR', folderName: f.name })
