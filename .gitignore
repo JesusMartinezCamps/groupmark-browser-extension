@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+coverage/
+.next/
+out/
+
+# Runtime env files. Commit only safe examples such as .env.example.
+.env
+.env.*
+*.local
+!.env.example
+!.env*.template
+
+# Local Dev IA / Claude state
+.claude/
+
+# Memoria privada del asistente (dev-ia)
+.groupmark-memory/
+
+# Tooling interno del proyecto (flujos personales, no relevante para contribuidores)
+.dev/
+docs/
+aliases.conf.example
+
+# Supabase local/link state
+.supabase/
+**/supabase/.temp/
+**/supabase/.branches/
+**/supabase/.env.local
+**/supabase/.env.*.local
+
+# Logs/cache
+*.log
+.cache/
+.turbo/
+__pycache__/
+*.pyc
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store

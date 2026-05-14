@@ -1,0 +1,128 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 360px;
+  min-height: 200px;
+  max-height: 500px;
+  overflow-y: auto;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  background: #1a1a1a;
+  color: #e8e8e8;
+}
+
+header {
+  padding: 12px 16px 10px;
+  border-bottom: 1px solid #2e2e2e;
+}
+
+h1 {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #fff;
+}
+
+/* ---- Lista de carpetas ---- */
+#folder-list {
+  padding: 8px 0;
+}
+
+.folder-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  cursor: default;
+}
+
+.folder-row:hover {
+  background: #252525;
+}
+
+.folder-name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px;
+}
+
+.folder-count {
+  font-size: 11px;
+  color: #666;
+  flex-shrink: 0;
+}
+
+/* Botón abrir */
+.btn-open {
+  flex-shrink: 0;
+  padding: 3px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  border: none;
+  background: #3a7bd5;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-open:hover {
+  background: #2f68bb;
+}
+
+.btn-open:active {
+  background: #265499;
+}
+
+/* Selector de color */
+.color-picker {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.color-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border-color 0.1s, transform 0.1s;
+}
+
+.color-dot:hover {
+  transform: scale(1.2);
+}
+
+.color-dot.selected {
+  border-color: #fff;
+}
+
+/* Colores del navegador */
+.color-dot[data-color="grey"]   { background: #808080; }
+.color-dot[data-color="blue"]   { background: #4a90d9; }
+.color-dot[data-color="red"]    { background: #e05c5c; }
+.color-dot[data-color="yellow"] { background: #e0c050; }
+.color-dot[data-color="green"]  { background: #5caa5c; }
+.color-dot[data-color="pink"]   { background: #e07aaa; }
+.color-dot[data-color="purple"] { background: #9b6fd4; }
+.color-dot[data-color="cyan"]   { background: #4ab8c8; }
+.color-dot[data-color="orange"] { background: #e07830; }
+
+/* Estados */
+.state-empty {
+  padding: 20px 16px;
+  color: #666;
+  font-size: 13px;
+}
+
+.state-error {
+  padding: 20px 16px;
+  color: #e05c5c;
+  font-size: 13px;
+}
